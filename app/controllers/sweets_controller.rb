@@ -8,7 +8,7 @@ class SweetsController < ApplicationController
       flash[:success] = 'メッセージを投稿しました。'
       redirect_to root_url
     else
-      @sweets = current_user.sweets.order('created_at DESC').page(params[:page])
+      @sweets = current_user.feed_sweets.order('created_at DESC').page(params[:page])
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'toppages/index'
     end
