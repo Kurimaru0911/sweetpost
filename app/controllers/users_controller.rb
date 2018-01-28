@@ -45,6 +45,12 @@ class UsersController < ApplicationController
     counts(@user)
   end
 
+  def wents
+    @user = User.find(params[:id])
+    @sweets = @user.feed_wents.order('created_at DESC').page(params[:page])
+    counts(@user)
+  end
+
   private
 
   def user_params

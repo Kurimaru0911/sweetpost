@@ -1,0 +1,11 @@
+<% if current_user.went?(sweet) %>
+  <%= form_for(current_user.wents.find_by(sweet_id: sweet.id), html: { method: :delete, style: :'display: inline' }) do |f| %>
+    <%= hidden_field_tag :sweet_id, sweet.id %>
+    <%= f.submit '行ってきたよ解除', class: 'btn btn-warning btn-xs' %>
+  <% end %>
+<% else %>
+  <%= form_for(current_user.wents.build, html: { style: :'display: inline' }) do |f| %>
+    <%= hidden_field_tag :sweet_id, sweet.id %>
+    <%= f.submit '行ってきたよ', class: 'btn btn-warning btn-xs' %>
+  <% end %>
+<% end %>

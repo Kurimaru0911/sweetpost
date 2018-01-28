@@ -11,10 +11,12 @@ Rails.application.routes.draw do
       get :followings
       get :followers
       get :favorites
+      get :wents
     end
   end
   
   resources :sweets, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:index, :create, :destroy]
+  resources :wents, only: [:index, :create, :destroy]
 end

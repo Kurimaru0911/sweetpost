@@ -3,14 +3,9 @@
     <%= hidden_field_tag :sweet_id, sweet.id %>
     <%= f.submit 'お気に入り解除', class: 'btn btn-warning btn-xs' %>
   <% end %>
-  <%#= link_to 'お気に入り解除', favorite_path(current_user.favorites.find_by(sweet_id: sweet.id),
-                                              sweet_id: sweet.id),
-                                              method: :delete, class: 'btn btn-warning btn-xs' %>
 <% else %>
   <%= form_for(current_user.favorites.build, html: { style: :'display: inline' }) do |f| %>
     <%= hidden_field_tag :sweet_id, sweet.id %>
     <%= f.submit 'お気に入り', class: 'btn btn-warning btn-xs' %>
   <% end %>
-  <%#= link_to 'お気に入り', favorites_path(sweet_id: sweet.id),
-                            method: :post, class: 'btn btn-warning btn-xs' %>
 <% end %>

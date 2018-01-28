@@ -14,6 +14,7 @@
         </div>
         <div>
           <%= render 'favorites/favorite_button', sweet: sweet %>
+          <%= render 'wents/went_button', sweet: sweet %>
           <% if current_user == sweet.user %>
             <%= link_to "Delete", sweet, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% end %>
