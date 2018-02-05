@@ -10,6 +10,15 @@
           <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= sweet.created_at %></span>
         </div>
         <div>
+          <p><%= sweet.prefecture.name %></p>
+        </div>
+        <div>
+          <p><%= sweet.name %></p>
+        </div>
+        <% if sweet.image? %>
+          <%= image_tag sweet.image.thumb.url %>
+        <% end %>
+        <div>
           <p><%= sweet.content %></p>
         </div>
         <div>

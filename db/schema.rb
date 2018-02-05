@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128071016) do
+ActiveRecord::Schema.define(version: 20180205065149) do
 
   create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20180128071016) do
     t.index ["sweet_id"], name: "index_favorites_on_sweet_id", using: :btree
     t.index ["user_id", "sweet_id"], name: "index_favorites_on_user_id_and_sweet_id", unique: true, using: :btree
     t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
+  end
+
+  create_table "prefectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,8 +41,12 @@ ActiveRecord::Schema.define(version: 20180128071016) do
   create_table "sweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "prefecture_id"
+    t.string   "image"
+    t.string   "name"
+    t.index ["prefecture_id"], name: "index_sweets_on_prefecture_id", using: :btree
     t.index ["user_id"], name: "index_sweets_on_user_id", using: :btree
   end
 
@@ -46,6 +56,8 @@ ActiveRecord::Schema.define(version: 20180128071016) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "prefecture_id"
+    t.index ["prefecture_id"], name: "index_users_on_prefecture_id", using: :btree
   end
 
   create_table "wents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -62,7 +74,9 @@ ActiveRecord::Schema.define(version: 20180128071016) do
   add_foreign_key "favorites", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "sweets", "prefectures"
   add_foreign_key "sweets", "users"
+  add_foreign_key "users", "prefectures"
   add_foreign_key "wents", "sweets"
   add_foreign_key "wents", "users"
 end

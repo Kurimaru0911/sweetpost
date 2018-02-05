@@ -4,6 +4,7 @@ class ToppagesController < ApplicationController
       @user = current_user
       @sweet = current_user.sweets.build  # form_for 用
       @sweets = current_user.feed_sweets.order('created_at DESC').page(params[:page])
+      @prefectures = Prefecture.all
     end
   end
 end

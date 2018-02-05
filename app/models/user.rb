@@ -5,7 +5,9 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  
+
+  belongs_to :prefecture, optional: true
+
   has_many :sweets
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow

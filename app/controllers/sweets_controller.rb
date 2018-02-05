@@ -9,6 +9,7 @@ class SweetsController < ApplicationController
       redirect_to root_url
     else
       @sweets = current_user.feed_sweets.order('created_at DESC').page(params[:page])
+      @prefectures = Prefecture.all
       flash.now[:danger] = 'メッセージの投稿に失敗しました。'
       render 'toppages/index'
     end
@@ -32,4 +33,10 @@ class SweetsController < ApplicationController
       redirect_to root_url
     end
   end
+  
+  
+  private
+    def sweet_params
+      params.require(:sweet).permit(:name, :content, :prefecture_id, :image, :image_cache)
+    end
 end
