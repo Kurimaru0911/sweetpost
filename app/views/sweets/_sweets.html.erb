@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <ul class="media-list">
   <% sweets.each do |sweet| %>
     <% user = sweet.user %>
@@ -23,6 +24,7 @@
         </div>
         <div>
           <%= render 'favorites/favorite_button', sweet: sweet %>
+          <%= @favorites_count = Favorite.where(sweet_id: sweet.id).count %>
           <%= render 'wents/went_button', sweet: sweet %>
           <% if current_user == sweet.user %>
             <%= link_to "Delete", sweet, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
@@ -33,3 +35,31 @@
   <% end %>
   <%= paginate sweets %>
 </ul>
+<% else %>
+<ul class="media-list">
+  <% sweets.each do |sweet| %>
+    <% user = sweet.user %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= sweet.created_at %></span>
+        </div>
+        <div>
+          <p><%= sweet.prefecture.name %></p>
+        </div>
+        <div>
+          <p><%= sweet.name %></p>
+        </div>
+        <% if sweet.image? %>
+          <%= image_tag sweet.image.thumb.url %>
+        <% end %>
+        <div>
+          <p><%= sweet.content %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>

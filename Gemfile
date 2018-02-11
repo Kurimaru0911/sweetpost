@@ -61,3 +61,6 @@ gem 'rmagick'
 group :production do
   gem 'pg', '0.21.0'
 end
+
+gem 'carrierwave'
+gem 'cloudinary'

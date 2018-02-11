@@ -34,7 +34,6 @@ class SweetsController < ApplicationController
     end
   end
   
-  
   private
     def sweet_params
       params.require(:sweet).permit(:name, :content, :prefecture_id, :image, :image_cache)

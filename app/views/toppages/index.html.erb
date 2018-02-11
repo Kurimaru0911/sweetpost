@@ -39,4 +39,12 @@
       <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
+  <div class="col-sm-5">
+  <h2>新着投稿</h2>
+    <%= render 'sweets/sweets', sweets: @sweets %>
+  </div>
+  <div class="col-sm-5">
+  <h2>ランキング</h2>
+  <%= render 'sweets/sweets', sweets: @rank %>
+  </div>
 <% end %>

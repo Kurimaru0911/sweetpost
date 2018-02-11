@@ -1,6 +1,12 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base  
+ 
+  if Rails.env.production?
+    include Cloudinary::CarrierWave
+  else
+    storage :file
+  end
 
  # リサイズしたり画像形式を変更するのに必要
   include CarrierWave::RMagick
@@ -32,6 +38,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     time = Time.now
     name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
     name.downcase
+  end
+
+  def public_id
+    model.id
   end
 
 end
