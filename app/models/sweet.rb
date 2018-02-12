@@ -11,4 +11,5 @@ class Sweet < ApplicationRecord
   has_many :favorite_users, through: :favorites, source: :user
   has_many :wents, dependent: :destroy
   has_many :went_users, through: :wents, source: :user
+  has_many :comments
 end

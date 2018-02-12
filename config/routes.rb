@@ -15,7 +15,10 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :sweets, only: [:create, :destroy]
+  resources :sweets, only: [:create, :destroy, :show] do
+      resources :comments, only: [:create, :destroy]
+  end
+  
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:index, :create, :destroy]
   resources :wents, only: [:index, :create, :destroy]

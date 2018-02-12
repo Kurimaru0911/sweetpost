@@ -20,6 +20,12 @@ class SweetsController < ApplicationController
     flash[:success] = 'メッセージを削除しました。'
     redirect_back(fallback_location: root_path)
   end
+  
+  def show 
+    @sweet = Sweet.find(params[:id])
+    @comment = Comment.new
+    @user = User.find_by(id: @sweet.user_id)
+  end
 
   private
 

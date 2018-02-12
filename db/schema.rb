@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205065149) do
+ActiveRecord::Schema.define(version: 20180212093756) do
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "sweet_id"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sweet_id"], name: "index_comments_on_sweet_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
 
   create_table "favorites", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -70,6 +80,8 @@ ActiveRecord::Schema.define(version: 20180205065149) do
     t.index ["user_id"], name: "index_wents_on_user_id", using: :btree
   end
 
+  add_foreign_key "comments", "sweets"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "sweets"
   add_foreign_key "favorites", "users"
   add_foreign_key "relationships", "users"

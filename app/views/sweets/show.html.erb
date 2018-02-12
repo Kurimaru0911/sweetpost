@@ -1,0 +1,81 @@
+<% if logged_in? %>
+<ul class="media-list">
+    <% user = @sweet.user %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= @sweet.created_at %></span>
+        </div>
+        <div>
+          <p><%= @sweet.prefecture.name %></p>
+        </div>
+        <div>
+          <p><%= @sweet.name %></p>
+        </div>
+        <% if @sweet.image? %>
+          <%= image_tag @sweet.image.thumb.url %>
+        <% end %>
+        <div>
+          <p><%= @sweet.content %></p>
+        </div>
+        <div>
+          <% if current_user == @sweet.user %>
+            <%= link_to "Delete", @sweet, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+    
+      <div class="comment_index">
+      <h3>Comments</h3>
+      <% @sweet.comments.each do |comment| %>
+        <p><%= link_to "#{comment.user.name}" , @user %>: <%= comment.content %>
+        <% if current_user == comment.user %>
+          <%= link_to "Delete", [@sweet,comment], method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+        <% end %>
+        <hr/>
+      <% end %>
+      
+      
+      <div class="comment-form">
+            <%= form_for([@sweet, @comment]) do |f| %>
+          <div class="field">
+            <%= f.text_area :content, placeholder: "Send comment..." %>
+          </div>
+          <%= f.submit "Post", class: "btn btn-primary" %>
+          <% end %>
+      </div>
+      
+      
+      
+    
+</ul>
+<% else %>
+<ul class="media-list">
+    <% user = @sweet.user %>
+    <li class="media">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(user, options = { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body">
+        <div>
+          <%= link_to user.name, user_path(user) %> <span class="text-muted">posted at <%= @sweet.created_at %></span>
+        </div>
+        <div>
+          <p><%= @sweet.prefecture.name %></p>
+        </div>
+        <div>
+          <p><%= @sweet.name %></p>
+        </div>
+        <% if @sweet.image? %>
+          <%= image_tag @sweet.image.thumb.url %>
+        <% end %>
+        <div>
+          <p><%= @sweet.content %></p>
+        </div>
+      </div>
+    </li>
+<% end %>
