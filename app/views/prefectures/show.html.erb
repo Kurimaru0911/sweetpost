@@ -1,0 +1,13 @@
+<div class="center jumbotron">
+  <div class="text-center">
+    <h1>県別！みんなの甘味処</h1>
+  </div>
+</div>
+<div class="col-sm-5">
+  <h2>新着投稿</h2>
+    <%= render 'sweets/sweets', sweets: @sweets %>
+</div>
+<div class="col-sm-5">
+  <h2>ランキング</h2>
+  <%= render 'sweets/sweets', sweets: @rank %>
+</div>

@@ -54,7 +54,8 @@
           <p><%= sweet.name %></p>
         </div>
         <% if sweet.image? %>
-          <%= image_tag sweet.image.thumb.url %>
+          <%= link_to image_tag(sweet.image.thumb.url), sweet_path(sweet) %>
+        <% else %>
         <% end %>
         <div>
           <p><%= sweet.content %></p>

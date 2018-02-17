@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root to: 'toppages#index'
+  
+  get 'prefectures_map', to: 'prefectures#index'
+  get 'prefectures_show',to: 'prefectures#show'
+
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

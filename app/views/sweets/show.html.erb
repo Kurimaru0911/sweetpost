@@ -78,4 +78,12 @@
         </div>
       </div>
     </li>
+    
+      <div class="comment_index">
+      <h3>Comments</h3>
+      <% @sweet.comments.each do |comment| %>
+        <p><%= link_to "#{comment.user.name}" , @user %>: <%= comment.content %>
+        <hr/>
+      <% end %>
+    
 <% end %>

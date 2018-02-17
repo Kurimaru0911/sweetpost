@@ -8,7 +8,7 @@ class ToppagesController < ApplicationController
     else
       @user = User.all.page(params[:page])
       @sweets = Sweet.all.order('created_at DESC').page(params[:page])
-      @rank = Sweet.find(Favorite.group(:sweet_id).order('count(sweet_id) desc').limit(5).pluck(:sweet_id))
+      @rank = Sweet.find(Favorite.group(:sweet_id).order('count(sweet_id) desc').pluck(:sweet_id))
     end
   end
 end
