@@ -26,8 +26,10 @@
           <%= render 'favorites/favorite_button', sweet: sweet %>
           <%= @favorites_count = Favorite.where(sweet_id: sweet.id).count %>
           <%= render 'wents/went_button', sweet: sweet %>
+          <%= @wents_count = Went.where(sweet_id: sweet.id).count %>
           <% if current_user == sweet.user %>
             <%= link_to "Delete", sweet, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
+            <%= link_to 'Edit', edit_sweet_path(sweet), class: 'btn btn-default btn-xs' %>
           <% end %>
         </div>
       </div>

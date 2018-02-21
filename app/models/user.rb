@@ -8,14 +8,14 @@ class User < ApplicationRecord
 
   belongs_to :prefecture, optional: true
 
-  has_many :sweets
-  has_many :relationships
-  has_many :comments
-  has_many :followings, through: :relationships, source: :follow
-  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
-  has_many :followers, through: :reverses_of_relationship, source: :user
+  has_many :sweets, dependent: :destroy
+  has_many :relationships, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :followings, through: :relationships, source: :follow, dependent: :destroy
+  has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id', dependent: :destroy
+  has_many :followers, through: :reverses_of_relationship, source: :user, dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :favorite_sweets, through: :favorites, source: :sweet
+  has_many :favorite_sweets, through: :favorites, source: :sweet, dependent: :destroy
   has_many :wents, dependent: :destroy
   has_many :went_sweets, through: :wents, source: :sweet
   

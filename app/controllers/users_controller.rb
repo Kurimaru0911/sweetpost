@@ -27,6 +27,31 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def edit
+    @user = User.find(params[:id])
+    @prefectures = Prefecture.all
+  end
+
+  def update
+    @user = User.find(params[:id])
+
+    if @user.update(user_params)
+      flash[:success] = 'User は正常に更新されました'
+      redirect_to user_path
+    else
+      flash.now[:danger] = 'User は更新されませんでした'
+      render :edit
+    end
+  end
+  
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    flash[:success] = 'User は正常に削除されました'
+    redirect_to root_url
+  end
 
   def followings
     @user = User.find(params[:id])
@@ -48,7 +73,7 @@ class UsersController < ApplicationController
 
   def wents
     @user = User.find(params[:id])
-    @sweets = @user.feed_wents.order('created_at DESC').page(params[:page])
+    @sweet_wents = @user.feed_wents.order('created_at DESC').page(params[:page])
     counts(@user)
   end
 

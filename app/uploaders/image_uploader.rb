@@ -32,14 +32,6 @@ class ImageUploader < CarrierWave::Uploader::Base
     super.chomp(File.extname(super)) + '.jpg' if original_filename.present?
   end
 
- # ファイル名は日本語が入ってくると嫌なので、下記のようにしてみてもいい。
- # 日付(20131001.jpgみたいなファイル名)で保存する
-  def filename
-    time = Time.now
-    name = time.strftime('%Y%m%d%H%M%S') + '.jpg'
-    name.downcase
-  end
-
   def public_id
     model.id
   end

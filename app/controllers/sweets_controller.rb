@@ -26,6 +26,23 @@ class SweetsController < ApplicationController
     @comment = Comment.new
     @user = User.find_by(id: @sweet.user_id)
   end
+  
+  def edit
+    @sweet = Sweet.find(params[:id])
+    @prefectures = Prefecture.all
+  end
+  
+  def update
+    @sweet = Sweet.find(params[:id])
+
+    if @sweet.update(sweet_params)
+      flash[:success] = 'Sweet は正常に更新されました'
+      redirect_to root_url
+    else
+      flash.now[:danger] = 'Sweet は更新されませんでした'
+      render :edit
+    end
+  end
 
   private
 

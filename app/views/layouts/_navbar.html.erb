@@ -18,7 +18,10 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.name %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'My profile', user_path(current_user) %></li>
-                <li><%= link_to 'favotites', favorites_user_path(current_user) %></li>
+                <li><%= link_to 'Followings', followings_user_path(current_user) %></li>
+                <li><%= link_to 'Follower', followers_user_path(current_user) %></li>
+                <li><%= link_to 'Favotites', favorites_user_path(current_user) %></li>
+                <li><%= link_to 'Edit Profile', edit_user_path(@user) %></li>
                 <li role="separator" class="divider"></li>
                 <li><%= link_to 'Logout', logout_path, method: :delete %></li>
               </ul>

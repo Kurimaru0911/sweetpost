@@ -1,0 +1,35 @@
+<h1><%= @user.name %> の編集ページ</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
+
+  <div class="form-group">
+    <%= f.label :name, 'Name' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email, 'Email' %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :prefecture_id, 'Prefecture' %>
+    <%= f.collection_select :prefecture_id, @prefectures, :id, :name, {}, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, 'Password' %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, 'Confirmation' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Upload', class: 'btn btn-primary btn-block' %>
+<% end %>
+
+<%= link_to 'ユーザを削除する', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<%= link_to 'マイページに戻る', user_path %>
