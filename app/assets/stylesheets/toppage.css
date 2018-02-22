@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+body {
+  background: linear-gradient(-60deg, rgba(223, 77, 119, .8), rgba(253, 159, 62, .8)) fixed, url("background.jpg") fixed;
+  background-size: cover;
+}
+
+
+.navbar{
+    background-color: rgba(38, 30, 71, .9);
+    border-color: #261E47;
+}
+
+.jumbotron{
+    background-color: rgba(255, 240, 240, .8);
+}
+
+.timeline{
+  background-color: rgba(255, 240, 240, .8);
+  margin: 0 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.toppage-map{
+  text-align: center;
+  font-size: 20px;
+}
+
+.user-timeline{
+  text-align: center;
+}
+
+.mytimeline{
+  font-size: 26px;
+}
+
+.user-list{
+  font-size: 20px;
+}
+
+.user-list-back{
+  background-color: rgba(255, 240, 240, .4);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.list{
+  background-color: rgba(255, 240, 240, .4);
+  border-radius: 5px;
+}
+
+.mypost-back{
+  background-color: rgba(255, 240, 240, .4);
+  border-radius: 5px;
+  font-size: 26px;
+  text-align: center;
+}
+
+.sweets-shousai{
+  background-color: rgba(255, 240, 240, .4);
+  border-radius: 5px;
+  padding: 10px;
+}

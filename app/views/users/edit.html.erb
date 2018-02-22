@@ -1,35 +1,40 @@
+<div class="col-md-4">
 <h1><%= @user.name %> の編集ページ</h1>
 
 <%= form_for(@user) do |f| %>
   <%= render 'layouts/error_messages', model: f.object %>
 
   <div class="form-group">
-    <%= f.label :name, 'Name' %>
+    <%= f.label :name, '名前' %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :email, 'Email' %>
+    <%= f.label :email, 'メール' %>
     <%= f.email_field :email, class: 'form-control' %>
   </div>
   
   <div class="form-group">
-    <%= f.label :prefecture_id, 'Prefecture' %>
+    <%= f.label :prefecture_id, '住んでいる県' %>
     <%= f.collection_select :prefecture_id, @prefectures, :id, :name, {}, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password, 'Password' %>
+    <%= f.label :password, 'パスワード' %>
     <%= f.password_field :password, class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label :password_confirmation, 'Confirmation' %>
+    <%= f.label :password_confirmation, 'パスワードをもう１度入力' %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
 
-  <%= f.submit 'Upload', class: 'btn btn-primary btn-block' %>
+  <%= f.submit '更新', class: 'btn btn-primary btn-block' %>
 <% end %>
+<br>
+<%= link_to 'ユーザを削除する', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか？' },class: 'btn btn-danger btn-block'  %>
+<br><br>
+<%= link_to 'マイページに戻る', user_path ,class: 'btn btn-primary btn-block'  %>
 
-<%= link_to 'ユーザを削除する', @user, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
-<%= link_to 'マイページに戻る', user_path %>
+
+</div>

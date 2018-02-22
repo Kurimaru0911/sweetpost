@@ -1,25 +1,44 @@
 <% if logged_in? %>
   <div class="row">
-    <aside class="col-md-4">
+    <div class="col-md-3 toppage-map">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @user.name %></h3>
+      </div>
+      <div class="panel-body">
+        <img class="media-object img-rounded img-responsive" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+      <%= link_to image_tag("map-japan.png", { :border => '0'}), prefectures_map_path, class: 'btn btn-lg btn-primary' %>
+      <p>県別！みんなの甘味処</p>
+    </div>
+    
+    <div class="col-xs-offset-1 col-xs-5 timeline">
+      <p class = "mytimeline">MyTimeLine</p>
+      <%= render 'sweets/sweets', sweets: @sweets %>
+    </div>
+    
+    <div class="col-md-3 mypost">
+      <p class="mypost-back">自分の甘味処を投稿</p>
       <%= form_for(@sweet) do |f| %>
       
         <div class="form-group">
-          <%= f.label :name, 'name' %>
+          <%= f.label :name, '店名' %>
           <%= f.text_field :name, class: 'form-control'%>
         </div>
 
         <div class="form-group">
-          <%= f.label :prefecture_id, 'Prefecture' %>
+          <%= f.label :prefecture_id, '県' %>
           <%= f.collection_select :prefecture_id, @prefectures, :id, :name, {}, class: 'form-control' %>
         </div>
 
         <div class="form-group">
-          <%= f.label :content, 'content' %>
+          <%= f.label :content, '詳細' %>
           <%= f.text_area :content, class: 'form-control', rows: 5 %>
         </div>
 
         <div class="form-group">
-          <%= f.label :image %>
+          <%= f.label :image, '写真' %>
           <%= image_tag f.object.image.thumb.url if f.object.image? %>
           <%= f.file_field :image %>
           <%= f.hidden_field :image_cache %>
@@ -27,27 +46,33 @@
 
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
       <% end %>
-    </aside>
-    <div class="col-xs-8">
-      <%= render 'sweets/sweets', sweets: @sweets %>
+      
     </div>
+    
   </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
       <h1>ようこそ！みんなの甘味処へ！</h1>
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
   </div>
-  <div class="col-sm-5">
-  <h2>新着投稿</h2>
-    <%= render 'sweets/sweets', sweets: @sweets %>
-  </div>
-  <div class="col-sm-5">
-  <h2>ランキング</h2>
-  <%= render 'sweets/sweets', sweets: @rank %>
+  
+  <div class="toppage-map col-sm-3">
+  <%= link_to image_tag("map-japan.png", { :border => '0'}), prefectures_map_path, class: 'btn btn-lg btn-primary' %>
+  <p>県別！みんなの甘味処</p>
   </div>
   
-  <%= link_to 'MAP!', prefectures_map_path, class: 'btn btn-lg btn-primary' %>
+  <div class="col-sm-4">
+    <div class="timeline">
+      <h2>新着投稿</h2>
+      <%= render 'sweets/sweets', sweets: @sweets %>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="timeline">
+      <h2>人気ランキング</h2>
+      <%= render 'sweets/sweets', sweets: @rank %>
+    </div>
+  </div>
   
 <% end %>

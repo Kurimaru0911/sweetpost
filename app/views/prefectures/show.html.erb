@@ -1,13 +1,37 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>県別！みんなの甘味処 in <%= @prefecture.name %></h1>
+<% if logged_in? %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>県別！みんなの甘味処 in <%= @prefecture.name %></h1>
+    </div>
   </div>
-</div>
-<div class="col-sm-5">
-  <h2>新着投稿</h2>
-    <%= render 'sweets/sweets', sweets: @sweets %>
-</div>
-<div class="col-sm-5">
-  <h2>ランキング</h2>
-  <%= render 'sweets/sweets', sweets: @rank %>
-</div>
+  <div class="col-sm-5 ">
+    <div class = "timeline">
+      <h2>新着投稿</h2>
+      <%= render 'sweets/sweets', sweets: @sweets %>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class = "timeline">
+      <h2>県別人気ランキング</h2>
+      <%= render 'sweets/sweets', sweets: @rank %>
+    </div>
+  </div>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>県別！みんなの甘味処 in <%= @prefecture.name %></h1>
+    </div>
+  </div>
+  <div class="col-sm-5 ">
+    <div class = "timeline">
+      <h2>新着投稿</h2>
+      <%= render 'sweets/sweets', sweets: @sweets %>
+    </div>
+  </div>
+  <div class="col-sm-5">
+    <div class = "timeline">
+      <h2>県別人気ランキング</h2>
+      <%= render 'sweets/sweets', sweets: @rank %>
+    </div>
+  </div>
+<% end %>

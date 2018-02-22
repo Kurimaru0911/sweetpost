@@ -1,5 +1,6 @@
 <% if logged_in? %>
-<ul class="media-list">
+<div class="col-md-6">
+<ul class="media-list sweets-shousai">
     <% user = @sweet.user %>
     <li class="media">
       <div class="media-left">
@@ -30,7 +31,7 @@
     </li>
     
       <div class="comment_index">
-      <h3>Comments</h3>
+      <h3>コメント</h3>
       <% @sweet.comments.each do |comment| %>
         <p><%= link_to "#{comment.user.name}" , @user %>: <%= comment.content %>
         <% if current_user == comment.user %>
@@ -43,9 +44,9 @@
       <div class="comment-form">
             <%= form_for([@sweet, @comment]) do |f| %>
           <div class="field">
-            <%= f.text_area :content, placeholder: "Send comment..." %>
+            <%= f.text_area :content, placeholder: "コメントを送る" %>
           </div>
-          <%= f.submit "Post", class: "btn btn-primary" %>
+          <%= f.submit "コメント", class: "btn btn-primary" %>
           <% end %>
       </div>
       
@@ -85,5 +86,6 @@
         <p><%= link_to "#{comment.user.name}" , @user %>: <%= comment.content %>
         <hr/>
       <% end %>
-    
+</div>
+
 <% end %>
